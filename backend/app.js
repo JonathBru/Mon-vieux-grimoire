@@ -8,12 +8,14 @@ const bookRoutes = require('./routes/book');
 const userRoutes = require('./routes/user');
 
 
-mongoose.connect('mongodb+srv://jonathanbru:nHfLxwetgH1lrt8w@cluster0.upq6jwl.mongodb.net/?retryWrites=true&w=majority',
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
+require('dotenv').config(); // Charge les variables d'environnement à partir du fichier .env
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
-
 
 const app = express();
 
